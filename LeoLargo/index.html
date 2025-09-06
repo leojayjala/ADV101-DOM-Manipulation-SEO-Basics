@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <title>My Hobbies: Video Games & Movies</title>
+    
+    
+    <meta name="description" content="A look into my favorite hobbies: playing immersive video games and watching classic movies.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
+
+    <div class="max-w-2xl w-full bg-gray-800 p-8 rounded-2xl shadow-lg border border-indigo-500/30">
+      
+        <header class="text-center mb-6">
+            <h1 class="text-4xl font-bold text-indigo-400">Gaming & Cinema: My Favorite Pastimes</h1>
+        </header>
+
+        <main>
+         
+            <h2 class="text-2xl font-semibold text-indigo-300 mb-3">Why I Love Them</h2>
+
+          
+            <p id="changeable-text" class="mb-4 text-gray-300">
+                Diving into a video game world or getting lost in a great movie is the perfect way to unwind. I love exploring new stories and challenging my mind with complex gameplay or compelling plots.
+            </p>
+            
+            
+            <img 
+                src="https://placehold.co/600x300/4338ca/ffffff?text=Games+and+Movies" 
+                alt="A collection of items representing video games and movies"
+                class="w-full h-auto rounded-xl shadow-md mb-6 object-cover"
+            >
+
+            <h2 class="text-2xl font-semibold text-indigo-300 mb-3">My All-Time Favorites</h2>
+            <ul id="item-list" class="list-disc list-inside mb-6 pl-4 space-y-2">
+                <li>The Witcher 3 (Game)</li>
+                <li>Pulp Fiction (Movie)</li>
+                <li>Stardew Valley (Game)</li>
+            </ul>
+
+          
+            <div class="flex flex-wrap gap-4">
+                <button id="change-text-btn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                    Change The First Paragraph
+                </button>
+                <button id="add-item-btn" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                    Add a New Favorite
+                </button>
+                <button id="remove-item-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                    Remove Last Favorite
+                </button>
+            </div>
+        </main>
+    </div>
+
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          
+            const changeTextBtn = document.getElementById('change-text-btn');
+            const changeableText = document.getElementById('changeable-text');
+            const originalText = changeableText.textContent;
+            const newText = "From epic open-world RPGs to mind-bending indie films, there's always a new adventure waiting. The storytelling in modern media is truly incredible!";
+
+            changeTextBtn.addEventListener('click', () => {
+                if (changeableText.textContent === originalText) {
+                    changeableText.textContent = newText;
+                } else {
+                    changeableText.textContent = originalText;
+                }
+            });
+
+            const addItemBtn = document.getElementById('add-item-btn');
+            const itemList = document.getElementById('item-list');
+            const newItems = ["Elden Ring (Game)", "The Matrix (Movie)", "Cyberpunk 2077 (Game)", "Blade Runner 2049 (Movie)"];
+            let itemIndex = 0;
+
+            addItemBtn.addEventListener('click', () => {
+
+                if (itemIndex < newItems.length) {
+                    const newLi = document.createElement('li');
+                    newLi.textContent = newItems[itemIndex];
+                    itemList.appendChild(newLi);
+                    itemIndex++;
+                } else {
+                   
+                    addItemBtn.textContent = "All Favorites Added!";
+                    addItemBtn.disabled = true;
+                    addItemBtn.classList.add('bg-gray-500', 'cursor-not-allowed');
+                    addItemBtn.classList.remove('bg-indigo-500', 'hover:bg-indigo-600');
+                }
+            });
+
+            
+            const removeItemBtn = document.getElementById('remove-item-btn');
+
+            removeItemBtn.addEventListener('click', () => {
+                const lastItem = itemList.lastElementChild;
+                if (lastItem) {
+                    itemList.removeChild(lastItem);
+                    
+                   
+                    if (itemIndex > 0) {
+                       itemIndex--;
+                       addItemBtn.textContent = "Add a New Favorite";
+                       addItemBtn.disabled = false;
+                       addItemBtn.classList.remove('bg-gray-500', 'cursor-not-allowed');
+                       addItemBtn.classList.add('bg-indigo-500', 'hover:bg-indigo-600');
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
